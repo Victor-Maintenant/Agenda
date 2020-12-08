@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
  * Description : A repetitive Event
  */
 public class RepetitiveEvent extends Event {
+    ChronoUnit frequency;
     /**
      * Constructs a repetitive event
      *

@@ -13,6 +13,7 @@ public class Agenda {
      * @param e the event to add
      */
     public void addEvent(Event e) {
+        
         // TODO : implémenter cette méthode
         throw new UnsupportedOperationException("Pas encore implémenté");
     }

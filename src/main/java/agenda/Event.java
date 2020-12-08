@@ -78,6 +78,11 @@ public class Event {
         return myDuration;
     }
 
+    @Override
+    public String toString() {
+        return "Event{" + "myTitle=" + myTitle + '}';
+    }
+
    
     
 }

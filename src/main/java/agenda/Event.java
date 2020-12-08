@@ -46,7 +46,9 @@ public class Event {
             if (dayTimeEnd.toLocalDate().isAfter(aDay) || dayTimeEnd.toLocalDate().isEqual(aDay)) {
                 return true;
             }
+            else {
             return false;
+            }
         }
         else {
             return false;

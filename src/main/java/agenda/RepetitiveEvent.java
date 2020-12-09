@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class RepetitiveEvent extends Event {
     ChronoUnit frequency;
-    List<LocalDate> exceptions = new ArrayList<>();
+    private List<LocalDate> exceptions = new ArrayList<>();
     /**
      * Constructs a repetitive event
      *
@@ -63,9 +63,6 @@ public class RepetitiveEvent extends Event {
             else {
             retour = false;
             }
-        }
-        else {
-            retour = false;
         }
         myStart = myStart.plus(1, frequency);
         }       

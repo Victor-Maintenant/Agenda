@@ -17,26 +17,26 @@ public class FixedTerminationEventTest {
     LocalDateTime nov_1__2020_22_30 = LocalDateTime.of(2020, 11, 1, 22, 30);
 
     // January 5, 2021
-    LocalDate jan_5_2021 = LocalDate.of(2021, 1, 5);
+    LocalDate jan_3_2021 = LocalDate.of(2021, 1, 3);
 
     // 120 minutes
     Duration min_120 = Duration.ofMinutes(120);
 
     // A Weekly Repetitive event ending at a given date
-    FixedTerminationEvent fixedTermination = new FixedTerminationEvent("Fixed termination weekly", nov_1__2020_22_30, min_120, ChronoUnit.WEEKS, jan_5_2021);
+    FixedTerminationEvent fixedTermination = new FixedTerminationEvent("Fixed termination weekly", nov_1__2020_22_30, min_120, ChronoUnit.WEEKS, jan_3_2021);
 
     // A Weekly Repetitive event ending after a give number of occurrrences
     FixedTerminationEvent fixedRepetitions = new FixedTerminationEvent("Fixed termination weekly", nov_1__2020_22_30, min_120, ChronoUnit.WEEKS, 10);
     
     @Test
     public void canCalculateNumberOfOccurrencesFromTerminationDate() {
-        assertEquals(10, fixedTermination.getNumberOfOccurrences(), "Cet événement doits se répéter 10 fois");
+    	LocalDate termination = LocalDate.of(2021,1, 3);
+        assertEquals(termination, fixedTermination.getTerminationDate(), "Cet événement doits se terminer le 3 janvier");
     }
 
     @Test
     public void canCalculateTerminationDateFromNumberOfOccurrences() {
-        LocalDate termination = LocalDate.of(2021,1, 3);
-        assertEquals(termination, fixedRepetitions.getTerminationDate(), "Cet événement doits se terminer le 3 janvier");
+    	assertEquals(10, fixedRepetitions.getNumberOfOccurrences(), "Cet événement doits se répéter 10 fois");
     }
     
     @Test
@@ -51,13 +51,13 @@ public class FixedTerminationEventTest {
         assertFalse(fixedRepetitions.isInDay(nov_1_2020.minus(1, ChronoUnit.DAYS)), "Un événement n'a pas lieu avant son jour de début");
     }
 
-    @Test
+   @Test
     public void eventOccurs10WeeksAfter() {
         assertTrue(fixedTermination.isInDay(nov_1_2020.plus(6, ChronoUnit.WEEKS)), "Cet événement se produit toutes les semaines");
         assertTrue(fixedRepetitions.isInDay(nov_1_2020.plus(6, ChronoUnit.WEEKS)), "Cet événement se produit toutes les semaines");
     }
 
-    @Test
+   @Test
     public void eventIsNotInExceptionDays() {
         fixedTermination.addException(nov_1_2020.plus(2, ChronoUnit.WEEKS)); // ne se produit pas à W+2
         fixedTermination.addException(nov_1_2020.plus(4, ChronoUnit.WEEKS)); // ne se produit pas à W+4

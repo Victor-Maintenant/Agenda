@@ -33,4 +33,36 @@ public class Agenda {
     	}
     	return allEventInDay;
     }
+    
+    /**
+     * Trouver les événements de l'agenda en fonction de leur titre
+     * @param title le titre à rechercher
+     * @return les événements qui ont le même titre
+     * @throws Exception 
+     */
+    public List<Event> findByTitle(String title) throws Exception {
+    	if(this.events.isEmpty()) throw new Exception("Aucun evenement enregisté !");
+    	List<Event> eventTitleOK = new LinkedList<>();
+    	for (Event e : this .events) {
+    		if(e.getTitle().equals(title)) eventTitleOK.add(e);
+    	}
+    	return eventTitleOK;
+    }
+    
+    /**
+     * Déterminer s’il y a de la place dans l'agenda pour un événement
+     * @param e L'événement à tester (on se limitera aux événements simples)
+     * @return vrai s’il y a de la place dans l'agenda pour cet événement
+     * @throws Exception 
+     */
+    public boolean isFreeFor(Event e) throws Exception {
+    	if(this.events.isEmpty()) throw new Exception("Aucun evenement enregisté !");
+    	boolean res = true;
+    	for (Event event : this.events) {
+    		if (e.isInDay(event.getStart().toLocalDate())) {
+    			res = false;
+    		}
+    	}
+    	return res;
+    }
 }

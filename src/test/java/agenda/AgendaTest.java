@@ -21,7 +21,8 @@ public class AgendaTest {
     // November 1st, 2020, 22:30
     LocalDateTime nov_1__2020_22_30 = LocalDateTime.of(2020, 11, 1, 22, 30);
     LocalDateTime nov_2__2020_12_00 = LocalDateTime.of(2020, 11, 2, 12, 00);
-    LocalDateTime nov_1__2020_21_00 = LocalDateTime.of(2020, 11, 1, 2, 00);
+    LocalDateTime nov_1__2020_21_00 = LocalDateTime.of(2020, 11, 1, 21, 00);
+    LocalDateTime nov_1__2020_23_00 = LocalDateTime.of(2020, 11, 1, 23, 00);
 
     // 120 minutes
     Duration min_120 = Duration.ofMinutes(120);
@@ -31,6 +32,7 @@ public class AgendaTest {
     Event simple = new Event("Simple event", nov_1__2020_22_30, min_120);
     Event simple2 = new Event("Simple event", nov_2__2020_12_00, min_120);
     Event simple3 = new Event("Simple event", nov_1__2020_21_00, min_120);
+    Event simple4 = new Event("Simple event", nov_1__2020_23_00, min_120);
 
     // A Weekly Repetitive event ending at a given date
     RepetitiveEvent fixedTermination = new FixedTerminationEvent("Fixed termination weekly", nov_1__2020_22_30, min_120, ChronoUnit.WEEKS, jan_5_2021);
@@ -67,6 +69,7 @@ public class AgendaTest {
     @Test
     public void testIsFreeAgenda() throws Exception {
     	assertFalse(agenda.isFreeFor(simple3));
+    	assertFalse(agenda.isFreeFor(simple4));
     	assertTrue(agenda.isFreeFor(simple2));
     }
 

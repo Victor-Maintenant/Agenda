@@ -60,7 +60,11 @@ public class Agenda {
     	boolean res = true;
     	for (Event event : this.events) {
     		if (e.isInDay(event.getStart().toLocalDate())) {
-    			res = false;
+    			 if (e.getStart().toLocalTime().isBefore(event.getStart().toLocalTime()) || e.getStart().toLocalTime().equals(event.getStart().toLocalTime())){
+    		            if (e.getStart().plus(e.getDuration()).toLocalTime().isAfter(event.getStart().toLocalTime()) || e.getStart().plus(e.getDuration()).toLocalTime().equals(event.getStart().toLocalTime())) {
+    		            	res = false;
+    		            }
+    			 }
     		}
     	}
     	return res;

@@ -22,7 +22,7 @@ public class AgendaTest {
     LocalDateTime nov_1__2020_22_30 = LocalDateTime.of(2020, 11, 1, 22, 30);
     LocalDateTime nov_2__2020_12_00 = LocalDateTime.of(2020, 11, 2, 12, 00);
     LocalDateTime nov_1__2020_21_00 = LocalDateTime.of(2020, 11, 1, 21, 00);
-    LocalDateTime nov_1__2020_23_00 = LocalDateTime.of(2020, 11, 1, 23, 00);
+    LocalDateTime nov_1__2020_23_00 = LocalDateTime.of(2020, 11, 1, 12, 00);
 
     // 120 minutes
     Duration min_120 = Duration.ofMinutes(120);
@@ -69,7 +69,7 @@ public class AgendaTest {
     @Test
     public void testIsFreeAgenda() throws Exception {
     	assertFalse(agenda.isFreeFor(simple3));
-    	assertFalse(agenda.isFreeFor(simple4));
+    	assertTrue(agenda.isFreeFor(simple4));
     	assertTrue(agenda.isFreeFor(simple2));
     }
 
